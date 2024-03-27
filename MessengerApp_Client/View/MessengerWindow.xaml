@@ -1,0 +1,72 @@
+﻿<Window x:Class="MessengerApp_Client.View.MessengerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MessengerApp_Client.View"
+        xmlns:helpers="clr-namespace:MessengerApp_Client.Helpers"
+        mc:Ignorable="d"
+        Title="MessengerWindow" Height="450" Width="800">
+
+    <Window.Resources>
+        <helpers:MessageConverter x:Key="MessageConverter"/>
+    </Window.Resources>
+
+    <Grid Background="Snow">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <DockPanel Grid.Row="1" Background="MidnightBlue">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="140"></ColumnDefinition>
+                    <ColumnDefinition Width="58"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox Name="searchContactTextBox" Margin="5 10 2 10" Background="DarkSlateBlue" Foreground="Snow" Text="search contact" FontWeight="UltraLight"></TextBox>
+                <Button Grid.Column="1" Name ="searchContactButton" Margin="0 10 5 10" Background="Snow" Foreground="MidnightBlue" Content="SEARCH" FontWeight="Black"></Button>
+            </Grid>
+        </DockPanel>
+
+        <DockPanel Grid.Row="1" Grid.Column="1" Background="MidnightBlue">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <DockPanel Grid.Column="1">
+                    <TextBlock Name="contactsNameTextBlock" Text="contact's name" Foreground="Snow" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </DockPanel>
+            </Grid>
+        </DockPanel>
+
+        <DockPanel Background="MidnightBlue" Grid.Row="2" Grid.RowSpan="2">
+            <ListBox x:Name="contactsListBox" Background="MidnightBlue" BorderBrush="Snow" FontWeight="Bold"
+                     ItemsSource="{Binding Contacts}" DisplayMemberPath="ContactName"/>
+        </DockPanel>
+
+        <DockPanel Grid.Row="2" Grid.Column="2">
+            <RichTextBox Name="chatRichTextBox" Background="DarkSlateBlue" BorderBrush="Snow" IsReadOnly="True" />
+        </DockPanel>
+
+        <DockPanel Background="MidnightBlue" Grid.Row="3" Grid.Column="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <TextBox x:Name="sendMessageTextBox" Margin="5 10 2 10" Background="DarkSlateBlue" Text="send message" Foreground="Snow" FontWeight="ExtraLight"></TextBox>
+                <Button x:Name="sendMessageButton" Grid.Column="1" Background="Snow" Content="SEND" Foreground="MidnightBlue" FontWeight="Black" Margin="0 10 5 10"></Button>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</Window>
